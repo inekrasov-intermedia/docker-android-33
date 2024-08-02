@@ -22,6 +22,10 @@ RUN dpkg --add-architecture i386 && \
     apt-get install -y sudo openjdk-17-jdk curl expect git git-lfs libc6:i386 libgcc1:i386 libncurses5:i386 libstdc++6:i386 zlib1g:i386 openjdk-11-jdk wget unzip vim jq && \
     apt-get clean
 
+RUN curl -s "https://get.sdkman.io" | bash
+RUN sdk install gradleprofiler
+RUN gradle-profiler --benchmark help
+
 RUN sudo update-java-alternatives --set java-1.17.0-openjdk-amd64
 
 RUN groupadd android && useradd -d /opt/android-sdk-linux -g android android
